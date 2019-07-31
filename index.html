@@ -1,0 +1,86 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    
+    let gamesPlayed = 0;
+    let playerScore = 0;
+    let compScore = 0;
+    
+    function getRandomInt(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    result = Math.floor(Math.random() * (max - min + 1)) + min;
+    return result
+    }
+
+    function computerPlay(){
+        result = getRandomInt(1,3);
+        if (result == 1){
+            return "rock";
+        } else if (result == 2){
+            return "paper";
+        } else {
+            return "scissors";
+        }
+    }
+
+    function playerInput(){
+        result = prompt("Choose rock, paper or scissors");
+        return result.toLowerCase();
+    }
+
+    function playRound(playerSelection, computerSelection){
+        if (playerSelection == 'rock' && computerSelection == 'paper'){
+            message = "You lose! Computer wins with paper!";
+            compScore++;
+                } else if (playerSelection == 'rock' && computerSelection == 'scissors'){
+                    message = "You win! Player wins with rock!";
+                    playerScore++;
+                } else if (playerSelection == 'rock' && computerSelection == 'rock'){
+                    message = "Draw";
+                } else if (playerSelection == 'paper' && computerSelection == 'paper'){
+                    message = "Draw";
+                } else if (playerSelection == 'paper' && computerSelection == 'scissors'){
+                    message = "You lose! Computer wins with scissors!";
+                    compScore++;
+                } else if (playerSelection == 'paper' && computerSelection == 'rock') {
+                    message = "You win! Player wins with paper!";
+                    playerScore++;
+                } else if (playerSelection == 'scissors' && computerSelection == 'rock'){
+                    message = "You lose! Computer wins with rock";
+                    compScore++;
+                } else if (playerSelection == 'scissors' && computerSelection == 'paper'){
+                    message = "You win! Player wins with scissors";
+                    playerScore++;
+                } else if (playerSelection == 'scissors' && computerSelection == 'scissors'){
+                    rmessage = "Draw";
+                } else {
+                    message = "You did not put rock, paper or scissors";
+        }
+        gamesPlayed++;
+        return message;
+    }
+
+    function game(){
+        while (gamesPlayed < 5){
+            const playerSelection = playerInput();
+            const computerSelection = computerPlay();
+            console.log("-----------------------------------------------------------------")
+            console.log("Player selected: " + playerSelection);
+            console.log("Computer selected: " + computerSelection);  
+            console.log(playRound(playerSelection, computerSelection));
+            console.log("Player score:" + playerScore + "|| Computer score: " + compScore);
+        }
+    }
+
+    game();
+     
+    </script>
+</body>
+</html>
